@@ -3,7 +3,7 @@ from learnergy.models.deep import DBN
 import utils.objects as o
 
 
-def reconstruction(n_visible, n_hidden, steps, lr, momentum, decay, temperature, batch_size, epochs, use_gpu, train, val):
+def reconstruction(n_visible, batch_size, epochs, use_gpu, train, val):
     """Wraps the reconstruction task for optimization purposes.
 
     Args:

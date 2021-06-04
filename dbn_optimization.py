@@ -22,21 +22,23 @@ def get_arguments():
 
     parser.add_argument('dataset', help='Dataset identifier', choices=['fmnist', 'kmnist', 'mnist'])
 
-    parser.add_argument('mh', help='Meta-heuristic identifier', choices=['hs, ihs'])
+    parser.add_argument('mh', help='Meta-heuristic identifier', choices=['hs', 'ihs'])
 
     parser.add_argument('-n_visible', help='Number of visible units', type=int, default=784)
 
-    parser.add_argument('-n_hidden', help='Number of hidden units', nargs='+', type=int, default=[128, 256, 256])
+    parser.add_argument('-n_layers', help='Number of DBN layers', type=int, default=3)
 
-    parser.add_argument('-steps', help='Number of CD steps', nargs='+', type=int, default=[1, 1, 1])
+    # parser.add_argument('-n_hidden', help='Number of hidden units', nargs='+', type=int, default=[128, 256, 256])
 
-    parser.add_argument('-lr', help='Learning rate', nargs='+', type=float, default=[0.1, 0.1, 0.1])
+    # parser.add_argument('-steps', help='Number of CD steps', nargs='+', type=int, default=[1, 1, 1])
 
-    parser.add_argument('-momentum', help='Momentum', nargs='+', type=float, default=[0, 0, 0])
+    # parser.add_argument('-lr', help='Learning rate', nargs='+', type=float, default=[0.1, 0.1, 0.1])
 
-    parser.add_argument('-decay', help='Weight decay', nargs='+', type=float, default=[0, 0, 0])
+    # parser.add_argument('-momentum', help='Momentum', nargs='+', type=float, default=[0, 0, 0])
 
-    parser.add_argument('-temperature', help='Temperature', nargs='+', type=float, default=[1, 1, 1])
+    # parser.add_argument('-decay', help='Weight decay', nargs='+', type=float, default=[0, 0, 0])
+
+    # parser.add_argument('-temperature', help='Temperature', nargs='+', type=float, default=[1, 1, 1])
 
     parser.add_argument('-batch_size', help='Batch size', type=int, default=128)
 
@@ -63,15 +65,13 @@ if __name__ == '__main__':
 
     # Gathering RBM-related variable
     n_visible = args.n_visible
-    n_hidden = tuple(args.n_hidden)
-    steps = tuple(args.steps)
-    lr = tuple(args.lr)
-    momentum = tuple(args.momentum)
-    decay = tuple(args.decay)
-    temperature = tuple(args.temperature)
+    n_layers = args.n_layers
     batch_size = args.batch_size
     epochs = tuple(args.epochs)
     use_gpu = args.use_gpu
+
+    if n_layers != len(epochs):
+        raise Exception('Number of epochs should be equal to number of layers')
 
     # Gathering optimization variables
     n_agents = args.n_agents
@@ -91,11 +91,11 @@ if __name__ == '__main__':
     # fn = t.reconstruction(visible_shape, n_channels, steps, use_gpu, batch_size, epochs, train, val)
 
     # Defines the variables boundaries
-    # [filter_shape, n_filters, lr, momentum, decay]
-    lb = [1, 1, 0.0, 0.0, 0.0]
-    ub = [7, 10, 1.0, 1.0, 1.0]
-    n_variables = len(lb)
+    # [n_hidden, lr, momentum, decay] per layer
+    n_variables = n_layers * 4
+    lb = [128, 0.01, 0.01, 0.01]
+    ub = [256, 0.1, 0.1, 0.1]
 
     # Running the optimization task
-    opt.optimize(mh, fn, n_agents, n_variables, n_iterations, lb, ub, hyperparams)
+    # opt.optimize(mh, fn, n_agents, n_variables, n_iterations, lb, ub, hyperparams)
 
