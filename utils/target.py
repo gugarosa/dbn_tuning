@@ -3,17 +3,12 @@ from learnergy.models.deep import DBN
 import utils.objects as o
 
 
-def reconstruction(n_visible, batch_size, epochs, use_gpu, train, val):
+def reconstruction(n_layers, n_visible, batch_size, epochs, use_gpu, train, val):
     """Wraps the reconstruction task for optimization purposes.
 
     Args:
+        n_layers (int): Number of layers.
         n_visible (int): Number of visible units.
-        n_hidden (int): Number of hidden units.
-        steps (tuple): Number of Gibbs' sampling steps.
-        lr (tuple): Learning rate
-        momentum (tuple): Momentum.
-        decay (tuple): Weight decay.
-        temperature (tuple): Temperature.
         batch_size (int): Amount of samples per batch.
         epochs (int): Number of training epochs.
         use_gpu (boolean): Whether GPU should be used or not. 
@@ -34,11 +29,12 @@ def reconstruction(n_visible, batch_size, epochs, use_gpu, train, val):
         """
 
         # Optimization parameters
-        n_hidden = ()
-        steps = ()
-        lr = ()
-        momentum = ()
-        decay = ()
+        n_hidden = tuple([int(_p) for _p in p[:n_layers]])
+        steps = tuple([1] * n_layers)
+        lr = tuple([float(_p) for _p in p[n_layers:n_layers*2]])
+        momentum = tuple([float(_p) for _p in p[n_layers*2:n_layers*3]])
+        decay = tuple([float(_p) for _p in p[n_layers*3:]])
+        temperature = tuple([1] * n_layers)
 
         # Initializes the model
         model = DBN('bernoulli', n_visible, n_hidden, steps,

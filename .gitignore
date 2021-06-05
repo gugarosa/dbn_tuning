@@ -1,6 +1,7 @@
 # Unwanted files
 .vscode
 **/*.DS_Store
+*.log.*
 data/
 
 # Byte-compiled / optimized / DLL files
