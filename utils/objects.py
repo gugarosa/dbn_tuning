@@ -48,4 +48,5 @@ def get_mh(name):
     # If object is not found
     except:
         # Raises a RuntimeError
-        raise RuntimeError(f'Meta-heuristic {name} has not been specified yet.')
+        raise RuntimeError(
+            f'Meta-heuristic {name} has not been specified yet.')

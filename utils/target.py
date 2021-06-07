@@ -1,6 +1,5 @@
-from core.dbn import DBN
-
 import utils.objects as o
+from core.dbn import DBN
 
 
 def reconstruction(n_layers, n_visible, batch_size, epochs, use_gpu, train, val):

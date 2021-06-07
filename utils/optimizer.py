@@ -1,3 +1,5 @@
+import pickle
+
 from opytimizer import Opytimizer
 from opytimizer.core import Function
 from opytimizer.spaces import SearchSpace
@@ -33,5 +35,7 @@ def optimize(opt, target, n_agents, n_variables, n_iterations, lb, ub, hyperpara
     task.start(n_iterations)
 
     # Dumps the object to file
-    file_path = f'{opt.algorithm}_{n_agents}ag_{n_variables}var_{n_iterations}it.pkl'
-    task.save(file_path)
+    file_path = f'{optimizer.algorithm}_{n_agents}ag_{n_variables}var_{n_iterations}it.pkl'
+    with open(file_path, 'wb') as output_file:
+        # Dumps object to file
+        pickle.dump(task.history, output_file)

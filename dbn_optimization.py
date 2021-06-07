@@ -58,10 +58,6 @@ if __name__ == '__main__':
     epochs = tuple(args.epochs)
     use_gpu = args.use_gpu
 
-    # Checks if number of layers equals the number of epochs
-    if n_layers != len(epochs):
-        raise Exception('Number of epochs should be equal to number of layers')
-
     # Gathering optimization variables
     n_agents = args.n_agents
     n_variables = 4 * n_layers

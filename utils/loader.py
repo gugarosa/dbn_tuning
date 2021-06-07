@@ -1,8 +1,6 @@
 import numpy as np
-
 import torch
 import torchvision as tv
-
 from learnergy.core import Dataset
 
 # A constant used to hold a dictionary of possible datasets
@@ -27,19 +25,20 @@ def load_dataset(name='mnist', val_split=0.2, seed=0):
     """
 
     # Defining the torch seed
+    np.random.seed(seed)
     torch.manual_seed(seed)
 
     # Loads the training data
     train_data = DATASETS[name](root='./data', train=True, download=True,
-                           transform=tv.transforms.Compose(
-                               [tv.transforms.ToTensor()])
-                           )
+                                transform=tv.transforms.Compose(
+                                    [tv.transforms.ToTensor()])
+                                )
 
     # Loads the testing data
     test_data = DATASETS[name](root='./data', train=False, download=True,
-                          transform=tv.transforms.Compose(
-                              [tv.transforms.ToTensor()])
-                          )
+                               transform=tv.transforms.Compose(
+                                   [tv.transforms.ToTensor()])
+                               )
 
     # Calculating the number of train and validation samples
     train_size = int(train_data.data.shape[0] * (1 - val_split))
@@ -56,6 +55,5 @@ def load_dataset(name='mnist', val_split=0.2, seed=0):
     test = Dataset(test_data.data,
                    test_data.targets.numpy(),
                    test_data.transform)
-    
 
     return train, val, test

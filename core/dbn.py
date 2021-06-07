@@ -1,17 +1,16 @@
 """Deep Belief Network.
 """
 
-import torch
-from torch.utils.data import DataLoader
-from tqdm import tqdm
-
 import learnergy.utils.exception as e
 import learnergy.utils.logging as l
+import torch
 from learnergy.core import Dataset, Model
 from learnergy.models.bernoulli import RBM, DropoutRBM, EDropoutRBM
 from learnergy.models.extra import SigmoidRBM
 from learnergy.models.gaussian import (GaussianRBM, GaussianReluRBM,
                                        VarianceGaussianRBM)
+from torch.utils.data import DataLoader
+from tqdm import tqdm
 
 logger = l.get_logger(__name__)
 
