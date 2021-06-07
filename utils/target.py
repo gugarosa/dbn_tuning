@@ -1,4 +1,4 @@
-from learnergy.models.deep import DBN
+from core.dbn import DBN
 
 import utils.objects as o
 

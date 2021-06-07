@@ -97,4 +97,3 @@ if __name__ == '__main__':
 
     # Running the optimization task
     opt.optimize(mh, fn, n_agents, n_variables, n_iterations, lb, ub, hyperparams)
-

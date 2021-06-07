@@ -1,7 +1,9 @@
-import random
+import numpy as np
 
 import torch
 import torchvision as tv
+
+from learnergy.core import Dataset
 
 # A constant used to hold a dictionary of possible datasets
 DATASETS = {
@@ -11,12 +13,11 @@ DATASETS = {
 }
 
 
-def load_dataset(name='mnist', size=(28, 28), val_split=0.2, seed=0):
+def load_dataset(name='mnist', val_split=0.2, seed=0):
     """Loads an input dataset.
 
     Args:
         name (str): Name of dataset to be loaded.
-        size (tuple): Height and width to be resized.
         val_split (float): Percentage of split for the validation set.
         seed (int): Random seed.
 
@@ -29,21 +30,32 @@ def load_dataset(name='mnist', size=(28, 28), val_split=0.2, seed=0):
     torch.manual_seed(seed)
 
     # Loads the training data
-    train = DATASETS[name](root='./data', train=True, download=True,
+    train_data = DATASETS[name](root='./data', train=True, download=True,
                            transform=tv.transforms.Compose(
-                               [tv.transforms.ToTensor(),
-                                tv.transforms.Resize(size)])
+                               [tv.transforms.ToTensor()])
                            )
 
-    # Splitting the training data into training/validation
-    train, val = torch.utils.data.random_split(
-        train, [int(len(train) * (1 - val_split)), int(len(train) * val_split)])
-
     # Loads the testing data
-    test = DATASETS[name](root='./data', train=False, download=True,
+    test_data = DATASETS[name](root='./data', train=False, download=True,
                           transform=tv.transforms.Compose(
-                              [tv.transforms.ToTensor(),
-                               tv.transforms.Resize(size)])
+                              [tv.transforms.ToTensor()])
                           )
+
+    # Calculating the number of train and validation samples
+    train_size = int(train_data.data.shape[0] * (1 - val_split))
+    idx = np.random.permutation(train_data.data.shape[0])
+
+    # Creates customized datasets
+    # This will fix the problem when iterating over DBN layers
+    train = Dataset(train_data.data[idx[:train_size]],
+                    train_data.targets[idx[:train_size]].numpy(),
+                    train_data.transform)
+    val = Dataset(train_data.data[idx[train_size:]],
+                  train_data.targets[idx[:train_size]].numpy(),
+                  train_data.transform)
+    test = Dataset(test_data.data,
+                   test_data.targets.numpy(),
+                   test_data.transform)
+    
 
     return train, val, test
