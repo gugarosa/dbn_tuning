@@ -11,8 +11,8 @@ def reconstruction(n_layers, n_visible, batch_size, epochs, use_gpu, train, val)
         batch_size (int): Amount of samples per batch.
         epochs (int): Number of training epochs.
         use_gpu (boolean): Whether GPU should be used or not. 
-        train (torchtext.data.Dataset): Training dataset.
-        val (torchtext.data.Dataset): Validation dataset.
+        train (Dataset): Training dataset.
+        val (Dataset): Validation dataset.
 
     """
 

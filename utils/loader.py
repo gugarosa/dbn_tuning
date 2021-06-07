@@ -1,7 +1,8 @@
 import numpy as np
 import torch
 import torchvision as tv
-from learnergy.core import Dataset
+
+from core.dataset import Dataset
 
 # A constant used to hold a dictionary of possible datasets
 DATASETS = {

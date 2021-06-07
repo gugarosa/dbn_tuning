@@ -18,9 +18,6 @@ def optimize(opt, target, n_agents, n_variables, n_iterations, lb, ub, hyperpara
         ub (list): List of upper bounds.
         hyperparams (dict): Dictionary of hyperparameters.
 
-    Returns:
-        A History object containing all optimization's information.
-
     """
 
     # Creates space, optimizer and function

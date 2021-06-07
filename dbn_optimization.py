@@ -18,7 +18,7 @@ def get_arguments():
     """
 
     # Creates the ArgumentParser
-    parser = argparse.ArgumentParser(usage='Optimizes a DBN using standard meta-heuristics.')
+    parser = argparse.ArgumentParser(usage='Optimizes a DBN using HS-based meta-heuristics.')
 
     parser.add_argument('dataset', help='Dataset identifier', choices=['fmnist', 'kmnist', 'mnist'])
 
