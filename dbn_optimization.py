@@ -22,7 +22,7 @@ def get_arguments():
 
     parser.add_argument('dataset', help='Dataset identifier', choices=['fmnist', 'kmnist', 'mnist'])
 
-    parser.add_argument('mh', help='Meta-heuristic identifier', choices=['hs', 'ihs'])
+    parser.add_argument('mh', help='Meta-heuristic identifier', choices=['ghs', 'goghs', 'hs', 'ihs', 'nghs', 'sghs'])
 
     parser.add_argument('-n_visible', help='Number of visible units', type=int, default=784)
 

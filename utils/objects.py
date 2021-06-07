@@ -1,4 +1,4 @@
-from opytimizer.optimizers.evolutionary import HS, IHS
+from opytimizer.optimizers.evolutionary import GHS, GOGHS, HS, IHS, NGHS, SGHS
 
 
 class MetaHeuristic:
@@ -24,8 +24,12 @@ class MetaHeuristic:
 
 # Defines a meta-heuristic dictionary constant with the possible values
 MH = dict(
+    ghs=MetaHeuristic(GHS, dict(HMCR=0.7, PAR_min=0.0, PAR_max=1.0, bw_min=1.0, bw_max=10.0)),
+    goghs=MetaHeuristic(GOGHS, dict(pm=0.1)),
     hs=MetaHeuristic(HS, dict(HMCR=0.7, PAR=0.7, bw=1.0)),
-    ihs=MetaHeuristic(IHS, dict(HMCR=0.7, PAR_min=0.0, PAR_max=1.0, bw_min=1.0, bw_max=10.0))
+    ihs=MetaHeuristic(IHS, dict(HMCR=0.7, PAR_min=0.0, PAR_max=1.0, bw_min=1.0, bw_max=10.0)),
+    nghs=MetaHeuristic(NGHS, dict(pm=0.1)),
+    sghs=MetaHeuristic(SGHS, dict(HMCR=0.7, PAR=0.7, LP=100, HMCRm=0.98, PARm=0.9, bw_min=1.0, bw_max=10.0)),
 )
 
 
