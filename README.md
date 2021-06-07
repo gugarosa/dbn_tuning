@@ -71,7 +71,7 @@ Additionally, one can gather the optimization history files and input them to a 
 python inspect_history.py -h
 ```
 
-*Note that one needs to input the history file without their seed and extension, e.g., `_1.pkl`.*
+*Note that one needs to input the history files without their seed and extension, e.g., `HS_1ag_12var_2it`.*
 
 ### Bash Script
 
