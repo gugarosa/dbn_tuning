@@ -71,6 +71,8 @@ Additionally, one can gather the optimization history files and input them to a 
 python inspect_history.py -h
 ```
 
+*Note that one needs to input the history file without their seed and extension, e.g., `_1.pkl`.*
+
 ### Bash Script
 
 Instead of invoking every script to conduct the experiments, it is also possible to use the provided shell script, as follows:
