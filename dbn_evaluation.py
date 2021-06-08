@@ -86,3 +86,7 @@ if __name__ == '__main__':
 
     # Reconstructs over the testing set
     mse, _ = model.reconstruct(test)
+
+    # Outputs the MSE to a file
+    with open(history + '.txt', 'w') as output_file:
+        output_file.write(str(mse.detach().numpy().item()))
