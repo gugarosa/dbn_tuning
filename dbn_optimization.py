@@ -78,10 +78,10 @@ if __name__ == '__main__':
 
     # Defines the variables boundaries
     # Each list should have `n_layers` size
-    n_hidden_lb, n_hidden_ub = [128, 128, 128], [256, 256, 256]
-    lr_lb, lr_ub = [0.01, 0.01, 0.01], [0.1, 0.1, 0.1]
-    momentum_lb, momentum_ub = [0.01, 0.01, 0.01], [0.1, 0.1, 0.1]
-    decay_lb, decay_ub = [0.01, 0.01, 0.01], [0.1, 0.1, 0.1]
+    n_hidden_lb, n_hidden_ub = [128] * n_layers, [256] * n_layers
+    lr_lb, lr_ub = [0.01] * n_layers, [0.1] * n_layers
+    momentum_lb, momentum_ub = [0.01] * n_layers, [0.1] * n_layers
+    decay_lb, decay_ub = [0.01] * n_layers, [0.1] * n_layers
 
     # Defines the final boundaries
     lb = n_hidden_lb + lr_lb + momentum_lb + decay_lb
