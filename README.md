@@ -1,6 +1,6 @@
 # Fine-Tuning Deep Belief Networks with Harmony-Based Optimization
 
-*This repository holds all the necessary code to run the very-same experiments described in the paper "Fine-Tuning Deep Belief Networks with Harmony-Based Optimization".*
+*This repository holds all the necessary code to run the very-same experiments described in the chapter "Fine-Tuning Deep Belief Networks with Harmony-Based Optimization".*
 
 ---
 
