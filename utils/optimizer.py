@@ -34,5 +34,4 @@ def optimize(opt, target, n_agents, n_variables, n_iterations, lb, ub, hyperpara
     # Dumps the object to file
     file_path = f'{optimizer.algorithm.lower()}_{n_agents}ag_{n_variables}var_{n_iterations}it.pkl'
     with open(file_path, 'wb') as output_file:
-        # Dumps object to file
         pickle.dump(task.history, output_file)
